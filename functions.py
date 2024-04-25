@@ -145,7 +145,7 @@ def summarise_topic(giga: GigaChat, topic: str) -> str:
         SystemMessage(
             content='Ты научный ассистент. Ты пишешь научную работу по теме'
         ),
-        HumanMessage(content=f'Расскажи возможное содержание статьи с названием {topic}. Бери за основу существующие статьи с похожей темой. Отдельно вынеси практическое применение статьи')]
+        HumanMessage(content=f'Расскажи возможное содержание работы с названием {topic}. Бери за основу существующие работы с похожей темой. Отдельно вынеси практическое применение работы')]
     res = giga(messages)
     return res.content
 
@@ -217,15 +217,14 @@ def generate_slides(pres_json):
         title.font = pres_json['font']
         for paragraph in title.text_frame.paragraphs:
             for run in paragraph.runs:
-                run.font.text_outline.color.rgb = RGBColor(255, 255, 255)
+                run.font.color.rgb = RGBColor(255, 255, 255)
                 # Добавляем содержимое на слайд
         content = slide.placeholders[1]
         content.text = slide_info["content"]
         content.font = pres_json['font']
         for paragraph in content.text_frame.paragraphs:
             for run in paragraph.runs:
-                run.font.text_outline.color.rgb = RGBColor(255, 255, 255)
-
+                run.font.color.rgb = RGBColor(255, 255, 255)
         # Добавление изображений
         image_path = generate_image(slide_info["content"])
         if image_path:
